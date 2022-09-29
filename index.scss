@@ -1,0 +1,89 @@
+/*Colors palette:
+https://coolors.co/93032e-c69f89-caa791-d9fff8-a6a15e-84894a-034c3c*/
+
+//SCSS Variables
+$page-background-color: #93032e;
+$graph-container-background-color: #c69f89;
+$state-outline-color: #caa791;
+$nation-outline-color: #caa791;
+$tooltip-background-color: #d9fff8;
+$tooltip-border-color: #034c3c;
+
+//SCSS Mixins
+@mixin flex-row {
+  display: flex;
+}
+
+@mixin flex-row-center {
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  justify-content: center;
+  align-items: center;
+}
+
+//SCSS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  @include flex-column-center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $page-background-color;
+}
+
+#choropleth-map.graph-container {
+  @include flex-column-center;
+  padding: 25px 20px 15px 20px;
+  background-color: $graph-container-background-color;
+
+  > header {
+    @include flex-column-center;
+    margin-bottom: 15px;
+  }
+  > #graph {
+    width: 960px;
+    height: 600px;
+    > .state-line {
+      fill: none;
+      stroke: $state-outline-color;
+      stroke-linejoin: round;
+    }
+    .nation-line {
+      fill: none;
+      stroke: $nation-outline-color;
+      stroke-linejoin: round;
+    }
+  }
+  > footer {
+    margin-top: 30px;
+
+    margin-left: auto;
+  }
+  > #tooltip {
+    @include flex-column-center;
+    position: absolute;
+    padding: 5px;
+    background-color: $tooltip-background-color;
+    border: 2px solid $tooltip-border-color;
+    border-radius: 5px;
+    pointer-events: none;
+    > p {
+      font-size: 12px;
+    }
+  }
+}
